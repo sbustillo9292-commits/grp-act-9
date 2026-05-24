@@ -1,0 +1,113 @@
+package com.example.intentlistviewga;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        List<AndroidVersion> list = getAndroidVersions();
+
+        AndroidAdapter adapter = new AndroidAdapter(this, list);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            AndroidVersion selected = list.get(position);
+            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+            intent.putExtra("name", selected.name);
+            intent.putExtra("description", selected.description);
+            intent.putExtra("imageRes", selected.imageRes);
+            startActivity(intent);
+        });
+    }
+
+    private List<AndroidVersion> getAndroidVersions() {
+        List<AndroidVersion> list = new ArrayList<>();
+
+        list.add(new AndroidVersion("Android 1.0",
+                "Android 1.0 was Google's first Android release. Web browser support, camera support, Gmail counts, Google maps, and a YouTube application were among the basic capabilities. Although it does not have an official name like the other introduced variations, it is known informally as Apple Pie. In Android 1.0, the API level is set to 1. It is no longer utilized in mobile devices. It was published on September 23, 2008.",
+                R.drawable.v1));
+
+        list.add(new AndroidVersion("Android 1.1",
+                "Google released Android 1.1, which is the second version of the operating system. It included all of the features seen in the previous version, including This version improved upon Android 1.0 by adding a few new features. Caller applications now have several new capabilities, such as the ability to hide and expose the numeric keyboard. This version also has a function for preserving MMS attachments. It also does not have an official version name like Android 1.0, although it is known as Banana Bread informally. It came out on February 9, 2009.",
+                R.drawable.v11));
+
+        list.add(new AndroidVersion("Cupcake",
+                "The tradition of Android version names started with the release of Android 1.5 Cupcake in early 2009. Cupcake brought a slew of improvements to the Android interface, including the first on-screen keyboard, which would become increasingly important as phones moved away from the once-ubiquitous physical keyboard format. Cupcake also included the framework for third-party app widgets, which would fast become one of Android's most distinctive features, as well as the platform's first-ever video recording option.",
+                R.drawable.cupcake));
+
+        list.add(new AndroidVersion("Donut",
+                "Donut, Android 1.6, was introduced in the fall of 2009. Donut fixed key important holes in Android's core, including the OS's ability to function on a wide range of screen sizes and resolutions, which was a crucial feature in the years ahead It also introduced support for CDMA networks like Verizon, which will be crucial in Android's rapid growth.",
+                R.drawable.donut));
+
+        list.add(new AndroidVersion("Eclair",
+                "Android 2.0 Eclair is an Android version based on the Linux kernel 2.6.29 that was released on October 26, 2009. Android 1.6 Donut was its predecessor, while Android 2.1 Eclair was its successor. It was first presented by Motorola's Droid. Android 2.0 was updated to Android 2.1.0 eclair on January 12, 2010. On June 30, 2017, Google stopped supporting Android 2.0 and older.",
+                R.drawable.eclair));
+
+        list.add(new AndroidVersion("Froyo",
+                "Google's Android 2.2 Froyo operating system is the company's third major release. Google tried its best to update the OS with some much-needed updates as well as new features. In May 2010, Android 2.2 Froyo was released. Speed, APIs and services, browser, and Android Market are four areas from this release that you should be aware of. In terms of performance, Google launched the Dalvik JIT (Just In Time) compiler, which boosts CPU code performance by 2-5 times over Android 2.1. Google launched cloud-to-device messaging to allow developers to provide a better sync and notification experience for their users.",
+                R.drawable.android_froyo));
+
+        list.add(new AndroidVersion("Gingerbread",
+                "With the introduction of Gingerbread in 2010, Android's first genuine visual identity came into prominence. Bright green had long been the color of Android's robot mascot, and it became a fundamental aspect of the operating system's design with Gingerbread. As Android began its long march toward unique design, black and green slipped into the UI.",
+                R.drawable.gingerbread));
+
+        list.add(new AndroidVersion("Honeycomb",
+                "Honeycomb is unique in that it is a tablet-only operating system that, according to Google, will not be coming to smartphones. One noteworthy distinction in Honeycomb is that physical buttons are no longer required because they are incorporated into the OS itself. There are three software buttons on the bottom left of the screen: back, home, and the multitasking app switcher (switching between running apps). Additional information and functionality may be found in the bottom right: power, internet connection status, and a notification bar.",
+                R.drawable.honeycomb));
+
+        list.add(new AndroidVersion("Ice Cream Sandwich",
+                "Android 4.0 improves on the features that users love about Android, such as simple multitasking, rich alerts, customized home screens, resizable widgets, and deep interaction, while also introducing strong new communication and sharing options.",
+                R.drawable.ics));
+
+        list.add(new AndroidVersion("Jelly Bean",
+                "Android 4.3 improves on the speed enhancements introduced in Jelly Bean, such as vsync timing, triple buffering, decreased touch latency, CPU input boost, and hardware-accelerated 2D graphics, by adding new optimizations. The hardware-accelerated 2D renderer now optimizes the stream of drawing commands, putting it into a more efficient GPU format by reorganizing and combining draw operations for improved graphics performance. The renderer may now employ multithreading across several CPU cores to accomplish some tasks for multithreaded processing.",
+                R.drawable.jellybean));
+
+        list.add(new AndroidVersion("Kitkat",
+                "Android 4.4 KitKat is an Android version. Android 4.3 Jellybean is its predecessor, while Android 5.0 Lollipop is its successor. Kitkat aims to improve the overall user experience on the smartphone. Android 4.4 was released as Android 4.4.4 on July 7, 2014. KitKat 4.4 includes many new features to enhance the user experience and provide a polished feel across the Android device that it is running on. Android 4.4 was designed to require less ram than before, in order to help its performance on phones with less than 1 Gigabyte of RAM.",
+                R.drawable.kitkat));
+
+        list.add(new AndroidVersion("Lollipop",
+                "With the introduction of Android 5.0 Lollipop in the autumn of 2014, Google fundamentally revamped Android once more. Lollipop introduced the still-in-use Material Design standard, which gave Android, its applications, and even other Google products a completely new appearance. The card-based notion that had been strewn across Android became a primary UI pattern, guiding the design of everything from alerts, which now appeared on the lock screen for at-a-glance access, to the Recent Apps list, which took on an outright card-based appearance.",
+                R.drawable.lollipop));
+
+        list.add(new AndroidVersion("Marshmallow",
+                "Android 6.0 Marshmallow was launched as Android M during Google I/O 2015, and it is the successor to Android 5.1 Lollipop. It is accessible to developers as a preview release as of May 2015, and will be fully launched in the third quarter of 2015. Beautiful Begging, Google's Vice President for Android, remarked at Google I/O that \"we've gone back to the basics\" with Android M. We've spent a lot of time polishing and improving quality; we've actually fixed hundreds of issues. On August 17, a statue was uncovered that revealed the name: Android Marshmallow. Android 6.0 was released as Android 6.0.1 on October 3, 2017.",
+                R.drawable.marshmallow));
+
+        list.add(new AndroidVersion("Nougat",
+                "In 2016, Google released Android Nougat, which included a native split-screen mode, a new bundled-by-app notification system, and a Data Saver feature. Nougat also included several minor but useful improvements, including as an Alt-Tab-like shortcut for switching apps.",
+                R.drawable.nougat));
+
+        list.add(new AndroidVersion("Oreo",
+                "Oreo was also the first Android version to include Project Treble, an ambitious effort to provide a modular base for Android's code in the hopes of making it easier for device manufacturers to provide timely software updates.",
+                R.drawable.oreo));
+
+        list.add(new AndroidVersion("Pie",
+                "In August of 2018, the aroma of freshly baked Android Pie, also known as Android 9, filled the Android ecosystem. The most significant change in Pie was its hybrid gesture/button navigation system, which replaced Android's traditional Back, Home, and Overview keys with a large, multifunctional Home button and a small Back button that appeared alongside it as needed. Pie's productivity features also included a universal suggested-reply system for message alerts, a new dashboard of Digital Wellbeing settings, and more intelligent algorithms for power and screen brightness management.",
+                R.drawable.pie));
+
+        list.add(new AndroidVersion("Android 10",
+                "The Android environment has changed dramatically since Android 10. The rebranding marks the end of the age of dessert names, as Google has now fully embraced gesture controls. Despite these new approaches, Android remains the same OS that we are all familiar with. The main themes for Android 10 were gesture controls, increased security, and improved functionality. Overall, the upgrade feels like a continuation of Android Pie. However, when compared to Android Marshmallow and Android Oreo, there is still a significant difference between Android Pie and Android 10.",
+                R.drawable.android10));
+
+        list.add(new AndroidVersion("Android 11",
+                "Android 11, which was released in early September 2020, is a significant Android update both inside and outside. The most notable improvements in this version concern privacy: the update expands on the extended permissions system introduced in Android 10 by allowing users to provide applications specific rights — such as location access, camera access, and microphone access — only on a limited, one-time basis.",
+                R.drawable.android11));
+
+        list.add(new AndroidVersion("Android 12",
+                "Android 12 is our most personal operating system ever, with dynamic color capabilities that change depending on your wallpaper and responsive motion that responds to your touch. Android 12 is meant to be accessible for even more people, with a more roomy layout, color contrast enhancements, and new tools to assist individuals with low vision. From forms, light, and motion to changeable system colors that can be changed to match you, Android 12 rethinks the whole user interface. It's our most expressive, dynamic, and personal OS yet, redesigned to be more roomy and comfy.",
+                R.drawable.android12));
+
+        return list;
+    }}
